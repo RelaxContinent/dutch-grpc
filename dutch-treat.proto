@@ -1,0 +1,33 @@
+// protoのバージョンの宣言
+syntax = "proto3";
+
+// protoファイルから自動生成させるGoのコードの置き先
+option go_package = "dutch-grpc";
+
+// packageの宣言
+package myapp;
+
+// サービスの定義
+service GreetingService {
+	// サービスが持つメソッドの定義
+	rpc Hello (Request) returns (Response); 
+}
+
+// 型の定義
+message Request {
+	repeated Member members  = 1;
+    repeated Payment payments = 2;
+}
+
+message Response {
+	Payment payment = 1;
+}
+
+message Member {
+    string name = 1;
+}
+
+message Payment {
+    string payer = 1;
+    string amount = 2;
+}
